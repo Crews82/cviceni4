@@ -14,12 +14,14 @@ int main() {
     // Seed random number generator with current time
     srand(time(NULL));
 
-    printf("%s\n", // Dataset header (must match the number of columns)
+	FILE *file = fopen("data.csv", "w");
+
+    fprintf(file, "%s\n", // Dataset header (must match the number of columns)
         "feature1,feature2,class"
     );
 
     for (int i = 0; i < DATASET_SIZE; i++) {
-        printf(
+        fprintf(file,
             "%d,%d,%s\n",
             random_(0, 10),                     // feature1
             random_(20, 30),                    // feature2
@@ -27,5 +29,6 @@ int main() {
         );
     }
 
+    fclose(file);
     return 0;
 }
